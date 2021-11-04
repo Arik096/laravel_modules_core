@@ -1,0 +1,39 @@
+                        <li class="nav-item dropdown setting-header-container">
+                            <a class="nav-link dropdown-toggle setting-link" href="#" id="navbarSetting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="user-circle">
+                                    @if(Auth::guard('web')->user()->self_picture != "")
+                                        <img
+                                            src="{{asset('public/users_image/'.Auth::guard('web')->user()->self_picture)}}" alt="User Icon">
+                                    @else
+                                        <img src="{{asset('Modules/ManualOrder/Public/images/avatar_user.jpg')}}" alt="User Icon"/>
+                                    @endif
+                                </div>
+                                <span>
+                                     @php
+                                         $users_info = App\Models\RetailNetwork\RetailNetworkUser::where(['id'=>Auth::guard('web')->user()->id])->first();
+                                           if(!is_null($users_info)){
+                                               echo $users_info->name;
+                                           }
+                                     @endphp
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end header-right-submenu" aria-labelledby="navbarSetting">
+                                <li><a class="dropdown-item right-submenu-header" href="#"><img src="{{asset('Modules/ManualOrder/Public/images/icons/check-mark-icon.png')}}" alt=""/> Settings</a></li>
+                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="{{url('account/'.$prefix.'/settings/modules')}}"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Modules</a></li>
+                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="{{url('account/'.$prefix.'/settings/submodules')}}"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Submodules</a></li>
+                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="#"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Roles</a></li>
+                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="#"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Permissions</a></li>
+                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="#"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Assign Role and Permission</a></li>
+                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="#"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Users</a></li>
+
+
+                                {{--                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="{{url($prefix.'/manual-order/products')}}"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Products List</a></li>--}}
+                                {{--                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="{{url($prefix.'/manual-order/orders/lists')}}"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Order History</a></li>--}}
+
+                                {{--                                <li style="margin-left: 30px;margin-top: 10px;"><a class="dropdown-item" href="#"><img src="{{asset('Modules/ManualOrder/Public/images/icons/pattern-icon.png')}}" alt=""/> Edit Profile</a></li>--}}
+
+                                <li style="margin-top: 10px;"><a class="dropdown-item" href="{{url(\Illuminate\Support\Facades\Cookie::get('prefix').'/manual-order/logout')}}"><i class="fas fa-power-off"></i> Logout</a></li>
+                            </ul>
+
+                        </li>
